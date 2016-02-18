@@ -1,6 +1,10 @@
 package metrics
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	libNvidia "github.com/BradburyLab/go/metrics/nvidia"
+)
 
 type TopError struct {
 	Kind Kind
@@ -22,8 +26,8 @@ type TopDiskUsage struct {
 }
 
 type Top struct {
-	CPU float64 `json:"cpu"`
-	GPU float64 `json:"gpu"`
+	CPU    float64           `json:"cpu"`
+	Nvidia libNvidia.Devices `json:"nvidia"`
 
 	LoadAVG1  float64 `json:"load-avg-1"`
 	LoadAVG5  float64 `json:"load-avg-5"`
@@ -90,8 +94,8 @@ func (it *Top) Reduce(in chan chan Result) *Top {
 				switch result.Kind() {
 				case KIND_CPU:
 					it.CPU = result.V().(float64)
-				case KIND_GPU:
-					it.GPU = result.V().(float64)
+				case KIND_NVIDIA:
+					it.Nvidia = result.V().(libNvidia.Devices)
 
 				case KIND_LOAD_AVG_1:
 					it.LoadAVG1 = result.V().(float64)

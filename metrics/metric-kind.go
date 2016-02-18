@@ -4,7 +4,7 @@ type Kind uint8
 
 const (
 	KIND_CPU Kind = iota
-	KIND_GPU
+	KIND_NVIDIA
 	KIND_LOAD_AVG
 	KIND_LOAD_AVG_1
 	KIND_LOAD_AVG_5
@@ -46,7 +46,7 @@ const (
 
 var kindText = map[Kind]string{
 	KIND_CPU:                     "cpu",
-	KIND_GPU:                     "gpu",
+	KIND_NVIDIA:                  "nvidia",
 	KIND_LOAD_AVG:                "load-avg",
 	KIND_LOAD_AVG_1:              "load-avg-1",
 	KIND_LOAD_AVG_5:              "load-avg-5",
