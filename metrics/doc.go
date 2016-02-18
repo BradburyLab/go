@@ -1,0 +1,59 @@
+package metrics
+
+/*
+it := New().Register(
+	CPU(),
+	GPU(),
+	LoadAVG().Register(
+		LoadAVG1(),
+		LoadAVG5(),
+		LoadAVG15(),
+	),
+	MemVirt().Register(
+		MemVirtTotal(),
+		MemVirtAvailable(),
+		MemVirtUsed(),
+		MemVirtUsedPercent(),
+		MemVirtFree(),
+	),
+	MemSwap().Register(
+		MemSwapTotal(),
+		MemSwapFree(),
+		MemSwapUsed(),
+		MemSwapUsedPercent(),
+	),
+	DisksIO().Register(
+		DiskIO("sda").Register(
+			DiskIOReadCount(),
+			DiskIOWriteCount(),
+			DiskIOReadBytes(),
+			DiskIOWriteBytes(),
+		),
+		DiskIO("sda1").Register(
+			DiskIOReadCount(),
+			DiskIOWriteCount(),
+			DiskIOReadBytes(),
+			DiskIOWriteBytes(),
+		),
+	),
+	DiskUsage("/mnt").Register(
+		DiskUsageTotal(),
+		DiskUsageFree(),
+		DiskUsageUsed(),
+		DiskUsageUsedPercent(),
+	),
+	DiskUsage("/home").Register(
+		DiskUsageTotal(),
+		DiskUsageFree(),
+		DiskUsageUsed(),
+		DiskUsageUsedPercent(),
+	),
+	Nginx().Register(
+		NginxConnections(),
+		NginxRPS(),
+	),
+)
+
+top := NewTop().Reduce(it.Collect())
+fmt.Println(top)
+*/
