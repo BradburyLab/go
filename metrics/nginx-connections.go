@@ -1,6 +1,6 @@
 package metrics
 
-import libNginx "gl.bradburylab.tv/f451/l/nginx"
+import libNginx "github.com/BradburyLab/go/metrics/nginx"
 
 type NginxConnectionsResult struct {
 	v   uint

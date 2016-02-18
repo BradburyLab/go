@@ -3,7 +3,7 @@ package metrics
 import (
 	"time"
 
-	libNginx "gl.bradburylab.tv/f451/l/nginx"
+	libNginx "github.com/BradburyLab/go/metrics/nginx"
 )
 
 type NginxRPSResult struct {
