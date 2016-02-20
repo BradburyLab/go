@@ -25,4 +25,76 @@ func DevicesDecodeFrom(reader io.Reader) (Devices, error) {
 	return devicesDecode(data)
 }
 
+func (it Devices) SelectMinMemoryInfoPUsed() *Device {
+	var model *Device = nil
+
+	if it == nil || len(it) == 0 {
+		return model
+	}
+
+	for _, r := range it {
+		if model == nil {
+			model = r
+		} else if r.MemoryInfoPUsed() <= model.MemoryInfoPUsed() {
+			model = r
+		}
+	}
+
+	return model
+}
+
+func (it Devices) SelectMaxMemoryInfoPFree() *Device {
+	var model *Device = nil
+
+	if it == nil || len(it) == 0 {
+		return model
+	}
+
+	for _, r := range it {
+		if model == nil {
+			model = r
+		} else if r.MemoryInfoPFree() >= model.MemoryInfoPFree() {
+			model = r
+		}
+	}
+
+	return model
+}
+
+func (it Devices) SelectMaxMemoryInfoFree() *Device {
+	var model *Device = nil
+
+	if it == nil || len(it) == 0 {
+		return model
+	}
+
+	for _, r := range it {
+		if model == nil {
+			model = r
+		} else if r.MemoryInfoFree >= model.MemoryInfoFree {
+			model = r
+		}
+	}
+
+	return model
+}
+
+func (it Devices) SelectMinMemoryInfoUsed() *Device {
+	var model *Device = nil
+
+	if it == nil || len(it) == 0 {
+		return model
+	}
+
+	for _, r := range it {
+		if model == nil {
+			model = r
+		} else if r.MemoryInfoUsed <= model.MemoryInfoUsed {
+			model = r
+		}
+	}
+
+	return model
+}
+
 func NewDevices() Devices { return make(Devices, 0) }
