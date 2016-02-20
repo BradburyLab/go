@@ -9,3 +9,19 @@ type Device struct {
 	DecoderUtilization uint8  `json:"decoder-utilization"`
 	EncoderUtilization uint8  `json:"encoder-utilization"`
 }
+
+func (it *Device) MemoryInfoPFree() float64 {
+	if it.MemoryInfoTotal == 0 {
+		return 0
+	}
+
+	return float64(it.MemoryInfoFree) / float64(it.MemoryInfoTotal)
+}
+
+func (it *Device) MemoryInfoPUsed() float64 {
+	if it.MemoryInfoTotal == 0 {
+		return 0
+	}
+
+	return float64(it.MemoryInfoUsed) / float64(it.MemoryInfoTotal)
+}
