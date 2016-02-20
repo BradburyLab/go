@@ -15,7 +15,7 @@ func (it *Device) MemoryInfoPFree() float64 {
 		return 0
 	}
 
-	return float64(it.MemoryInfoFree) / float64(it.MemoryInfoTotal)
+	return (float64(it.MemoryInfoFree) / float64(it.MemoryInfoTotal)) * 100
 }
 
 func (it *Device) MemoryInfoPUsed() float64 {
@@ -23,5 +23,5 @@ func (it *Device) MemoryInfoPUsed() float64 {
 		return 0
 	}
 
-	return float64(it.MemoryInfoUsed) / float64(it.MemoryInfoTotal)
+	return (float64(it.MemoryInfoUsed) / float64(it.MemoryInfoTotal)) * 100
 }
