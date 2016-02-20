@@ -1,6 +1,10 @@
 package nvidia
 
-import "fmt"
+import (
+	"fmt"
+
+	"github.com/dustin/go-humanize"
+)
 
 type Device struct {
 	Index              uint8  `json:"index"`
@@ -30,7 +34,7 @@ func (it *Device) String() string {
 		it.Index,
 		it.Name,
 		it.PCIInfoBusID,
-		it.MemoryInfoFree, it.MemoryInfoUsed, it.MemoryInfoTotal,
+		humanize.Bytes(it.MemoryInfoFree), humanize.Bytes(it.MemoryInfoUsed), humanize.Bytes(it.MemoryInfoTotal),
 		it.MemoryInfoPFree(),
 		it.MemoryInfoPUsed(),
 	)
