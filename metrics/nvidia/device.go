@@ -36,8 +36,8 @@ func (it *Device) String() string {
 		it.Name,
 		it.PCIInfoBusID,
 		humanize.Bytes(it.MemoryInfoFree), humanize.Bytes(it.MemoryInfoUsed), humanize.Bytes(it.MemoryInfoTotal),
-		it.MemoryInfoPFree(),
-		it.MemoryInfoPUsed(),
+		it.MemoryInfoPFree(), it.MemoryInfoPUsed(),
+		it.EncoderUtilization, it.DecoderUtilization,
 	)
 }
 
