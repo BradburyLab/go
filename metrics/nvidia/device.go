@@ -29,7 +29,8 @@ func (it *Device) String() string {
 		"name: %s, "+
 		"bud-id: %s, "+
 		"mem(free/used/total): %s/%s/%s, "+
-		"mem(pfree/pused): %.1f/%.1f"+
+		"mem(pfree/pused): %.1f%%/%.1f%%, "+
+		"enc/dec: %d%%/%d%%"+
 		"}",
 		it.Index,
 		it.Name,
