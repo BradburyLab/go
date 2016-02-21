@@ -21,6 +21,8 @@ type Device struct {
 	PCIInfoDevice         uint32 `json:"pci-info-device"`            //!< The device's id on the bus, 0 to 31
 	PCIInfoPCIDeviceID    uint32 `json:"pci-info-pci-device-id"`     //!< The combined 16-bit device id and 16-bit vendor id
 	PCIInfoPCISubSystemID uint32 `json:"pci-info-pci-sub-system-id"` //!< The 32-bit Sub System Device ID
+
+	Processes Processes `json:"processes"`
 }
 
 func (it *Device) String() string {
@@ -30,7 +32,8 @@ func (it *Device) String() string {
 		"bud-id: %s, "+
 		"mem(free/used/total): %s/%s/%s, "+
 		"mem(pfree/pused): %.1f%%/%.1f%%, "+
-		"enc/dec: %d%%/%d%%"+
+		"enc/dec: %d%%/%d%%, "+
+		"processes: %d"+
 		"}",
 		it.Index,
 		it.Name,
@@ -38,6 +41,7 @@ func (it *Device) String() string {
 		humanize.Bytes(it.MemoryInfoFree), humanize.Bytes(it.MemoryInfoUsed), humanize.Bytes(it.MemoryInfoTotal),
 		it.MemoryInfoPFree(), it.MemoryInfoPUsed(),
 		it.EncoderUtilization, it.DecoderUtilization,
+		len(it.Processes),
 	)
 }
 

@@ -97,4 +97,17 @@ func (it Devices) SelectMinMemoryInfoUsed() *Device {
 	return model
 }
 
+func (it Devices) EncoderUtilizationAVG() uint32 {
+	if len(it) == 0 {
+		return 0
+	}
+
+	var sum uint32 = 0
+	for _, model := range it {
+		sum += uint32(model.EncoderUtilization)
+	}
+
+	return uint32(sum / uint32(len(it)))
+}
+
 func NewDevices() Devices { return make(Devices, 0) }
