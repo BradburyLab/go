@@ -17,12 +17,12 @@ type Device struct {
 	EncoderUtilization uint8  `json:"encoder-utilization"`
 	GPUUtilization     uint8  `json:"gpu-utilization"`
 
-	Temp          uint16 `json:"temp"`
-	PowerUsage    uint16 `json:"power-usage"`
-	ClockGraphics uint16 `json:"clock-graphics"`
-	ClockSm       uint16 `json:"clock-sm"`
-	ClockMem      uint16 `json:"clock-mem"`
-	FanSpeed      uint16 `json:"fan-speed"`
+	Temp          uint32 `json:"temp"`
+	PowerUsage    uint32 `json:"power-usage"`
+	ClockGraphics uint32 `json:"clock-graphics"`
+	ClockSm       uint32 `json:"clock-sm"`
+	ClockMem      uint32 `json:"clock-mem"`
+	FanSpeed      uint32 `json:"fan-speed"`
 
 	PCIInfoBusID          string `json:"pci-info-bus-id"`            //!< The tuple domain:bus:device.function PCI identifier (&amp; NULL terminator)
 	PCIInfoDomain         uint32 `json:"pci-info-domain"`            //!< The PCI domain on which the device's bus resides, 0 to 0xffff
