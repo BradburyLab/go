@@ -12,8 +12,17 @@ type Device struct {
 	MemoryInfoTotal    uint64 `json:"memory-info-total"`
 	MemoryInfoFree     uint64 `json:"memory-info-free"`
 	MemoryInfoUsed     uint64 `json:"memory-info-used"`
+	MemoryUtilization  uint8  `json:"gpu-utilization"`
 	DecoderUtilization uint8  `json:"decoder-utilization"`
 	EncoderUtilization uint8  `json:"encoder-utilization"`
+	GPUUtilization     uint8  `json:"gpu-utilization"`
+
+	Temp          uint16 `json:"temp"`
+	PowerUsage    uint16 `json:"power-usage"`
+	ClockGraphics uint16 `json:"clock-graphics"`
+	ClockSm       uint16 `json:"clock-sm"`
+	ClockMem      uint16 `json:"clock-mem"`
+	FanSpeed      uint16 `json:"fan-speed"`
 
 	PCIInfoBusID          string `json:"pci-info-bus-id"`            //!< The tuple domain:bus:device.function PCI identifier (&amp; NULL terminator)
 	PCIInfoDomain         uint32 `json:"pci-info-domain"`            //!< The PCI domain on which the device's bus resides, 0 to 0xffff
@@ -32,7 +41,7 @@ func (it *Device) String() string {
 		"bud-id: %s, "+
 		"mem(free/used/total): %s/%s/%s, "+
 		"mem(pfree/pused): %.1f%%/%.1f%%, "+
-		"enc/dec: %d%%/%d%%, "+
+		"enc/dec/gpu/mem: %d%%/%d%%/%d%%/%d%%, "+
 		"processes: %d"+
 		"}",
 		it.Index,
@@ -40,7 +49,7 @@ func (it *Device) String() string {
 		it.PCIInfoBusID,
 		humanize.Bytes(it.MemoryInfoFree), humanize.Bytes(it.MemoryInfoUsed), humanize.Bytes(it.MemoryInfoTotal),
 		it.MemoryInfoPFree(), it.MemoryInfoPUsed(),
-		it.EncoderUtilization, it.DecoderUtilization,
+		it.EncoderUtilization, it.DecoderUtilization, it.GPUUtilization, it.MemoryUtilization,
 		len(it.Processes),
 	)
 }
