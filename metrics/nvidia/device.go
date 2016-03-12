@@ -12,7 +12,7 @@ type Device struct {
 	MemoryInfoTotal    uint64 `json:"memory-info-total"`
 	MemoryInfoFree     uint64 `json:"memory-info-free"`
 	MemoryInfoUsed     uint64 `json:"memory-info-used"`
-	MemoryUtilization  uint8  `json:"gpu-utilization"`
+	MemoryUtilization  uint8  `json:"memory-utilization"`
 	DecoderUtilization uint8  `json:"decoder-utilization"`
 	EncoderUtilization uint8  `json:"encoder-utilization"`
 	GPUUtilization     uint8  `json:"gpu-utilization"`
