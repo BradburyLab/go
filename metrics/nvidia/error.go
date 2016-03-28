@@ -11,9 +11,9 @@ const (
 )
 
 var errorCodeText = map[Code]string{
-	ERROR_1: "#NvidiaSMI failed to GET %s: %s",
-	ERROR_2: "#NvidiaSMI failed to read response body from nvidia-smi: %s",
-	ERROR_3: "#NvidiaSMI failed to parse JSON body: %s",
+	ERROR_1: "#NVML (NVIDIA Management Library) failed to GET %s: %s",
+	ERROR_2: "#NVML (NVIDIA Management Library) failed to read response body from nvidia-smi: %s",
+	ERROR_3: "#NVML (NVIDIA Management Library) failed to parse JSON body: %s",
 }
 
 func ErrorCodeText(code Code) string { return errorCodeText[code] }
