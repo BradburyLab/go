@@ -20,7 +20,7 @@ func NewLoadAVG5Result() *LoadAVG5Result { return new(LoadAVG5Result) }
 
 type loadAVG5 struct{}
 
-func (it *loadAVG5) Collect(stat *psutil.LoadAvgStat, e error) Result {
+func (it *loadAVG5) Collect(stat *psutil.AvgStat, e error) Result {
 	result := NewLoadAVG5Result()
 	if e != nil {
 		return result.setErr(e)

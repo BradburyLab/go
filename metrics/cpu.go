@@ -31,7 +31,7 @@ func (it *cpu) Collect() (out chan Result) {
 	defer close(out)
 
 	result := NewCPUResult()
-	ret, e := psutil.CPUPercent(1*time.Second, false)
+	ret, e := psutil.Percent(1*time.Second, false)
 	if e != nil {
 		result.setErr(e)
 	} else {

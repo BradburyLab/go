@@ -35,7 +35,7 @@ func (it *diskUsage) Collect() (out chan Result) {
 	out = make(chan Result, it.Len())
 	defer close(out)
 
-	stat, e := psutil.DiskUsage(it.Name())
+	stat, e := psutil.Usage(it.Name())
 	if e != nil {
 		e = fmt.Errorf(`retrieve disk-usage status of "%s" failed: %s`, it.Name(), e.Error())
 	}

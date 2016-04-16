@@ -5,7 +5,7 @@ import (
 )
 
 type MetricLoadAVG interface {
-	Collect(*psutil.LoadAvgStat, error) Result
+	Collect(*psutil.AvgStat, error) Result
 }
 
 type loadAVG struct {
@@ -30,7 +30,7 @@ func (it *loadAVG) Collect() (out chan Result) {
 	out = make(chan Result, it.Len())
 	defer close(out)
 
-	stat, e := psutil.LoadAvg()
+	stat, e := psutil.Avg()
 	for _, metric := range it.metrics {
 		out <- metric.Collect(stat, e)
 	}
