@@ -22,7 +22,7 @@ func (it *MetricDiskIOResult) Err() error     { return it.err }
 type MetricDisksIO interface {
 	Name() string
 	Len() int
-	Collect(*psutil.DiskIOCountersStat, error) []Result
+	Collect(*psutil.IOCountersStat, error) []Result
 }
 
 type disksIO struct {
@@ -53,7 +53,7 @@ func (it *disksIO) Collect() (out chan Result) {
 	out = make(chan Result, it.Len())
 	defer close(out)
 
-	stats, e := psutil.DiskIOCounters()
+	stats, e := psutil.IOCounters()
 	for _, metric := range it.metrics {
 		if stat, ok := stats[metric.Name()]; ok {
 			for _, in := range metric.Collect(&stat, e) {

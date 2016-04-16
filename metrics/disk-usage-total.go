@@ -22,7 +22,7 @@ func NewDiskUsageTotalResult() *DiskUsageTotalResult { return new(DiskUsageTotal
 
 type diskUsageTotal struct{}
 
-func (it *diskUsageTotal) Collect(stat *psutil.DiskUsageStat, name string, e error) Result {
+func (it *diskUsageTotal) Collect(stat *psutil.UsageStat, name string, e error) Result {
 	result := NewDiskUsageTotalResult().
 		setName(name)
 	if e != nil {

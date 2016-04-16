@@ -22,7 +22,7 @@ func NewDiskUsFreeResult() *DiskUsageFreeResult { return new(DiskUsageFreeResult
 
 type diskUsageFree struct{}
 
-func (it *diskUsageFree) Collect(stat *psutil.DiskUsageStat, name string, e error) Result {
+func (it *diskUsageFree) Collect(stat *psutil.UsageStat, name string, e error) Result {
 	result := NewDiskUsFreeResult().
 		setName(name)
 	if e != nil {

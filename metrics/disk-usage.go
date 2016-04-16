@@ -7,7 +7,7 @@ import (
 )
 
 type MetricDiskUsage interface {
-	Collect(*psutil.DiskUsageStat, string, error) Result
+	Collect(*psutil.UsageStat, string, error) Result
 }
 
 type diskUsage struct {

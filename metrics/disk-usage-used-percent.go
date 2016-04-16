@@ -30,7 +30,7 @@ func NewDiskUsageUsedPercentResult() *DiskUsageUsedPercentResult {
 
 type diskUsageUsedPercent struct{}
 
-func (it *diskUsageUsedPercent) Collect(stat *psutil.DiskUsageStat, name string, e error) Result {
+func (it *diskUsageUsedPercent) Collect(stat *psutil.UsageStat, name string, e error) Result {
 	result := NewDiskUsageUsedPercentResult().
 		setName(name)
 	if e != nil {

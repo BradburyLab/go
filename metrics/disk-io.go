@@ -5,7 +5,7 @@ import (
 )
 
 type MetricDiskIO interface {
-	Collect(*psutil.DiskIOCountersStat, string, error) Result
+	Collect(*psutil.IOCountersStat, string, error) Result
 }
 
 type diskIO struct {
@@ -29,7 +29,7 @@ func (it *diskIO) Append(metric MetricDiskIO) *diskIO {
 
 func (it *diskIO) Len() int { return len(it.metrics) }
 
-func (it *diskIO) Collect(stat *psutil.DiskIOCountersStat, e error) (out []Result) {
+func (it *diskIO) Collect(stat *psutil.IOCountersStat, e error) (out []Result) {
 	for _, metric := range it.metrics {
 		out = append(out, metric.Collect(stat, it.name, e))
 	}

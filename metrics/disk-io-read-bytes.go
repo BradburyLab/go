@@ -22,7 +22,7 @@ func NewDiskIOReadBytesResult() *DiskIOReadBytesResult { return new(DiskIOReadBy
 
 type diskIOReadBytes struct{}
 
-func (it *diskIOReadBytes) Collect(stat *psutil.DiskIOCountersStat, name string, e error) Result {
+func (it *diskIOReadBytes) Collect(stat *psutil.IOCountersStat, name string, e error) Result {
 	result := NewDiskIOReadBytesResult()
 	result.setName(name)
 	if e != nil {

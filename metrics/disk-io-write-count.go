@@ -22,7 +22,7 @@ func NewDiskIOWriteCountResult() *DiskIOWriteCountResult { return new(DiskIOWrit
 
 type diskIOWriteCount struct{}
 
-func (it *diskIOWriteCount) Collect(stat *psutil.DiskIOCountersStat, name string, e error) Result {
+func (it *diskIOWriteCount) Collect(stat *psutil.IOCountersStat, name string, e error) Result {
 	result := NewDiskIOWriteCountResult().
 		setName(name)
 	if e != nil {

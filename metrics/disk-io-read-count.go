@@ -22,7 +22,7 @@ func NewDiskIOReadCountResult() *DiskIOReadCountResult { return new(DiskIOReadCo
 
 type diskIOReadCount struct{}
 
-func (it *diskIOReadCount) Collect(stat *psutil.DiskIOCountersStat, name string, e error) Result {
+func (it *diskIOReadCount) Collect(stat *psutil.IOCountersStat, name string, e error) Result {
 	result := NewDiskIOReadCountResult()
 	result.setName(name)
 	if e != nil {
