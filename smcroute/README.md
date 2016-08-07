@@ -5,6 +5,8 @@ Smcroute is client library for [smcroute](http://troglobit.com/smcroute.html) wr
 
 Library uses unix domain socket for communication.
 
+[Documentation](https://godoc.org/github.com/BradburyLab/go/smcroute)
+
 Quick-start
 -----------
 
