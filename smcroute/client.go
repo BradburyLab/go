@@ -16,7 +16,7 @@ func (it *Client) SetSocketPath(v string) *Client { it.socketPath = v; return it
 
 func (it *Client) Conn() (net.Conn, *Message) {
 	if it.conn == nil {
-		if c, e := net.Dial(DEFAULT_NETWORK, DEFAULT_SOCKET_PATH); e != nil {
+		if c, e := net.Dial(DEFAULT_NETWORK, it.socketPath); e != nil {
 			return nil, Errorf(ERROR_SOCKET_CONNECT, it.socketPath, e.Error())
 		} else {
 			it.conn = c
