@@ -18,5 +18,5 @@ func Read(r io.Reader, it interface{}, kind codec.Kind) (int64, error) {
 		return n, e
 	}
 
-	return n, Do(buf, it, kind)
+	return n, DoBuf(buf, it, kind)
 }
