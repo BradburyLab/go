@@ -8,5 +8,10 @@ type Process struct {
 	//! because Windows KMD manages all the memory and not the NVIDIA driver
 	UsedGPUMemory uint64 `json:"used-gpu-memory"`
 
+	GPUUtil uint32 `json:"gpu_util"` //!< SM (3D/Compute) Util Value
+	MemUtil uint32 `json:"mem_util"` //!< Frame Buffer Memory Util Value
+	ENCUtil uint32 `json:"enc_util"` //!< Encoder Util Value
+	DECUtil uint32 `json:"dec_util"` //!< Decoder Util Value
+
 	Kind ProcessKind
 }
