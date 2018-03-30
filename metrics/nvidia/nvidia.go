@@ -30,14 +30,23 @@ func (it *Nvidia) Host() string   { return it.host }
 func (it *Nvidia) Port() int      { return it.port }
 func (it *Nvidia) Path() string   { return it.path }
 
-func (it *Nvidia) SetScheme(v string) *Nvidia             { it.scheme = v; return it }
-func (it *Nvidia) SetPath(v string) *Nvidia               { it.path = v; return it }
-func (it *Nvidia) SetTimeout(v time.Duration)             { it.timeout = v }
-func (it *Nvidia) SetMaxIdleConnectionsPerHost(v int)     { it.maxIdleConnectionsPerHost = v }
-func (it *Nvidia) SetDialTimeout(v time.Duration)         { it.dialTimeout = v }
-func (it *Nvidia) SetDialKeepAlive(v time.Duration)       { it.dialKeepAlive = v }
-func (it *Nvidia) SetTLSHandshakeTimeout(v time.Duration) { it.tlsHandshakeTimeout = v }
-func (it *Nvidia) SetTLSInsecureSkipVerify(v bool)        { it.tlsInsecureSkipVerify = v }
+func (it *Nvidia) SetScheme(v string) *Nvidia         { it.scheme = v; return it }
+func (it *Nvidia) SetPath(v string) *Nvidia           { it.path = v; return it }
+func (it *Nvidia) SetTimeout(v time.Duration) *Nvidia { it.timeout = v; return it }
+func (it *Nvidia) SetMaxIdleConnectionsPerHost(v int) *Nvidia {
+	it.maxIdleConnectionsPerHost = v
+	return it
+}
+func (it *Nvidia) SetDialTimeout(v time.Duration) *Nvidia   { it.dialTimeout = v; return it }
+func (it *Nvidia) SetDialKeepAlive(v time.Duration) *Nvidia { it.dialKeepAlive = v; return it }
+func (it *Nvidia) SetTLSHandshakeTimeout(v time.Duration) *Nvidia {
+	it.tlsHandshakeTimeout = v
+	return it
+}
+func (it *Nvidia) SetTLSInsecureSkipVerify(v bool) *Nvidia {
+	it.tlsInsecureSkipVerify = v
+	return it
+}
 
 func (it *Nvidia) Addr() string { return net.JoinHostPort(it.host, strconv.Itoa(it.port)) }
 func (it *Nvidia) client() *http.Client {

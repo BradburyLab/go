@@ -1,6 +1,10 @@
 package metrics
 
-import libNvidia "github.com/BradburyLab/go/metrics/nvidia"
+import (
+	"time"
+
+	libNvidia "github.com/BradburyLab/go/metrics/nvidia"
+)
 
 type NvidiaResult struct {
 	v libNvidia.Devices
@@ -23,12 +27,31 @@ type nvidia struct {
 	host   string
 	port   int
 	path   string
+
+	timeout                   time.Duration
+	maxIdleConnectionsPerHost int
+	dialTimeout               time.Duration
+	dialKeepAlive             time.Duration
+	tlsHandshakeTimeout       time.Duration
+	tlsInsecureSkipVerify     bool
 }
 
-func (it *nvidia) SetScheme(v string) *nvidia { it.scheme = v; return it }
-func (it *nvidia) SetHost(v string) *nvidia   { it.host = v; return it }
-func (it *nvidia) SetPort(v int) *nvidia      { it.port = v; return it }
-func (it *nvidia) SetPath(v string) *nvidia   { it.path = v; return it }
+func (it *nvidia) SetScheme(v string) *nvidia         { it.scheme = v; return it }
+func (it *nvidia) SetHost(v string) *nvidia           { it.host = v; return it }
+func (it *nvidia) SetPort(v int) *nvidia              { it.port = v; return it }
+func (it *nvidia) SetPath(v string) *nvidia           { it.path = v; return it }
+func (it *nvidia) SetTimeout(v time.Duration) *nvidia { it.timeout = v; return it }
+func (it *nvidia) SetMaxIdleConnectionsPerHost(v int) *nvidia {
+	it.maxIdleConnectionsPerHost = v
+	return it
+}
+func (it *nvidia) SetDialTimeout(v time.Duration) *nvidia   { it.dialTimeout = v; return it }
+func (it *nvidia) SetDialKeepAlive(v time.Duration) *nvidia { it.dialKeepAlive = v; return it }
+func (it *nvidia) SetTLSHandshakeTimeout(v time.Duration) *nvidia {
+	it.tlsHandshakeTimeout = v
+	return it
+}
+func (it *nvidia) SetTLSInsecureSkipVerify(v bool) *nvidia { it.tlsInsecureSkipVerify = v; return it }
 
 func (it *nvidia) Len() int { return 1 }
 
@@ -59,6 +82,13 @@ func Nvidia() *nvidia {
 	it.host = "127.0.0.1"
 	it.port = 4459
 	it.path = "/"
+
+	it.timeout = 1 * time.Second
+	it.maxIdleConnectionsPerHost = 16
+	it.dialTimeout = 1 * time.Second
+	it.dialKeepAlive = 10 * time.Second
+	it.tlsHandshakeTimeout = time.Second
+	it.tlsInsecureSkipVerify = true
 
 	return it
 }
