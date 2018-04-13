@@ -34,6 +34,8 @@ type nvidia struct {
 	dialKeepAlive             time.Duration
 	tlsHandshakeTimeout       time.Duration
 	tlsInsecureSkipVerify     bool
+
+	c *libNvidia.Nvidia
 }
 
 func (it *nvidia) SetScheme(v string) *nvidia         { it.scheme = v; return it }
@@ -55,16 +57,29 @@ func (it *nvidia) SetTLSInsecureSkipVerify(v bool) *nvidia { it.tlsInsecureSkipV
 
 func (it *nvidia) Len() int { return 1 }
 
+func (it *nvidia) client() *libNvidia.Nvidia {
+	if it.c == nil {
+		it.c = libNvidia.
+			NewNvidia(it.host, it.port).
+			SetScheme(it.scheme).
+			SetPath(it.path).
+			SetTimeout(it.timeout).
+			SetMaxIdleConnectionsPerHost(it.maxIdleConnectionsPerHost).
+			SetDialTimeout(it.dialTimeout).
+			SetDialKeepAlive(it.dialKeepAlive).
+			SetTLSHandshakeTimeout(it.tlsHandshakeTimeout).
+			SetTLSInsecureSkipVerify(it.tlsInsecureSkipVerify)
+	}
+
+	return it.c
+}
+
 func (it *nvidia) Collect() (out chan Result) {
 	out = make(chan Result, it.Len())
 	defer close(out)
 
 	result := NewNvidiaResult()
-	devices, e := libNvidia.
-		NewNvidia(it.host, it.port).
-		SetScheme(it.scheme).
-		SetPath(it.path).
-		Status()
+	devices, e := it.client().Status()
 	if e != nil {
 		result.setErr(e)
 	} else {
