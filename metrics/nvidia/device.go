@@ -18,7 +18,7 @@ type Device struct {
 	GPUUtilization     uint8  `json:"gpu-utilization" bson:"gpu-utilization"`
 
 	Temp          uint32 `json:"temp" bson:"temp"`
-	PowerUsage    uint32 `json:"power-usage" bson:"temp"`
+	PowerUsage    uint32 `json:"power-usage" bson:"power-usage"`
 	ClockGraphics uint32 `json:"clock-graphics" bson:"clock-graphics"`
 	ClockSm       uint32 `json:"clock-sm" bson:"clock-sm"`
 	ClockMem      uint32 `json:"clock-mem" bson:"clock-mem"`
