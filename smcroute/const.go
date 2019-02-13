@@ -6,6 +6,6 @@ const (
 
 	RESPONSE_BUFFER_SIZE int = 255
 
-	DEFAULT_SOCKET_PATH string = "/var/run/smcroute"
+	DEFAULT_SOCKET_PATH string = "/run/smcroute.sock"
 	DEFAULT_NETWORK     string = "unix"
 )

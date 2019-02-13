@@ -1,6 +1,9 @@
 package smcroute
 
-import "fmt"
+import (
+	"fmt"
+	"regexp"
+)
 
 type MessageCode uint16
 
@@ -37,7 +40,12 @@ var messageCodeText = map[MessageCode]string{
 	ERROR_EXEC:           `error executing cmd, see error string from smcroute daemon: {"cmd-bash": "%s", "latency": "%s", "error": "%s"};`,
 
 	// leave => no routes was assigned, nothing to leave
+	// for smcroute@v2.0.0
 	ERROR_DROP_MEMBERSHIP_FAILED_99: `DROP MEMBERSHIP failed. Error 99: Cannot assign requested address`,
+
+	// leave => no routes was assigned, nothing to leave
+	// for smcroute@v2.4.4+
+	ERROR_FAILED_LEAVE_NOT_A_MEMBER: `error leave - not a member: {"error": "%s"};`,
 }
 
 var messageCodeString = map[MessageCode]string{
@@ -46,7 +54,21 @@ var messageCodeString = map[MessageCode]string{
 	ERROR_SOCKET_READ:    "error-socket-read",
 	ERROR_CMD_ENCODE:     "error-cmd-encode",
 	ERROR_EXEC:           "error-exec",
+
+	ERROR_DROP_MEMBERSHIP_FAILED_99: "error-drop-membership-failed-99",
+	ERROR_FAILED_LEAVE_NOT_A_MEMBER: "error-leave-not-a-member",
 }
+
+var (
+	reErrorDropMembershipFailed99 *regexp.Regexp = regexp.MustCompile(
+		`DROP MEMBERSHIP failed\. Error 99\: Cannot assign requested address`,
+	)
+	reErrorFailedLeaveNotAMember *regexp.Regexp = regexp.MustCompile(
+		`(?:smcroutectl\:\ )?` +
+			`failed leave \([0-9a-fA-F\.\*\,]+\)?\)` +
+			`, not a member`,
+	)
+)
 
 func (it MessageCode) String() string { return MessageCodeString(it) }
 

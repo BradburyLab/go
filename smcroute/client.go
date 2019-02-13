@@ -71,11 +71,11 @@ func (it *Client) Exec(cmd *CMD) (*bytes.Buffer, *Message) {
 		cmd.StringBash(), resp.String(), latency)
 
 	if readed != 1 || resp.Len() != 0 {
-		// TODO: replace with regexp map
-		//       ala trans.MessageCode
 		// <match>
-		if resp.String() == MessageCodeText(ERROR_DROP_MEMBERSHIP_FAILED_99) {
+		if reErrorDropMembershipFailed99.Match(resp.Bytes()) {
 			return resp, Errorf(ERROR_DROP_MEMBERSHIP_FAILED_99)
+		} else if reErrorFailedLeaveNotAMember.Match(resp.Bytes()) {
+			return resp, Errorf(ERROR_FAILED_LEAVE_NOT_A_MEMBER, resp.String())
 		}
 		// </match>
 
