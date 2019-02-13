@@ -11,10 +11,8 @@ func (self *Message) GetCode() MessageCode { return self.Code }
 func (self *Message) GetText() string      { return self.Text }
 
 func (self *Message) Is(code MessageCode) bool { return self.Code == code }
-func (self *Message) Error() string {
-	return fmt.Sprintf("[#0x%X @ %s] %s", uint16(self.Code), self.Code, self.Text)
-}
-func (self *Message) String() string { return self.Text }
+func (self *Message) Error() string            { return self.String() }
+func (self *Message) String() string           { return self.Text }
 
 func (self *Message) SetCode(v MessageCode) *Message { self.Code = v; return self }
 func (self *Message) SetText(v string) *Message      { self.Text = v; return self }

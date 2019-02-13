@@ -34,11 +34,11 @@ const (
 )
 
 var messageCodeText = map[MessageCode]string{
-	ERROR_SOCKET_CONNECT: `error connecting to smcroute daemon: {"socket-path": "%s", "error":"%s"};`,
-	ERROR_SOCKET_WRITE:   `error writing to smcroute daemon: {"cmd-bash": "%s", "socket-path": "%s", "error": "%s"};`,
-	ERROR_SOCKET_READ:    `error reading from smcroute daemon: {"cmd-bash": "%s", "socket-path": "%s", "error": "%s"};`,
-	ERROR_CMD_ENCODE:     `error encoding cmd into byte array: {"cmd-bash": "%s", "error": "%s"};`,
-	ERROR_EXEC:           `error executing cmd, see error string from smcroute daemon: {"cmd-bash": "%s", "latency": "%s", "error": "%s"};`,
+	ERROR_SOCKET_CONNECT: `(error connecting to smcroute daemon): (:socket-path "%s" :error "%s")`,
+	ERROR_SOCKET_WRITE:   `(error writing to smcroute daemon): (:cmd-bash "%s" :socket-path "%s" :error "%s")`,
+	ERROR_SOCKET_READ:    `(error reading from smcroute daemon): (:cmd-bash: "%s" :socket-path "%s" :error "%s")`,
+	ERROR_CMD_ENCODE:     `(error encoding cmd into byte array): (:cmd-bash "%s" :error "%s")`,
+	ERROR_EXEC:           `(error executing cmd, see error string from smcroute daemon): (:cmd-bash "%s" :latency "%s" :error "%s")`,
 
 	// leave => no routes was assigned, nothing to leave
 	// for smcroute@v2.0.0
@@ -46,7 +46,7 @@ var messageCodeText = map[MessageCode]string{
 
 	// leave => no routes was assigned, nothing to leave
 	// for smcroute@v2.4.4+
-	ERROR_FAILED_LEAVE_NOT_A_MEMBER: `error leave - not a member: {"error": "%s"};`,
+	ERROR_FAILED_LEAVE_NOT_A_MEMBER: `(error leave - not a member): (:error "%s")`,
 }
 
 var messageCodeString = map[MessageCode]string{
