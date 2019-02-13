@@ -30,6 +30,7 @@ const (
 	ERROR_CMD_ENCODE
 	ERROR_EXEC
 	ERROR_DROP_MEMBERSHIP_FAILED_99
+	ERROR_FAILED_LEAVE_NOT_A_MEMBER
 )
 
 var messageCodeText = map[MessageCode]string{
